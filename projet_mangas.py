@@ -13,9 +13,20 @@ headers = {
     'x-rapidapi-key': "20013f0111msh6d05d5288cf7db6p1a1debjsn79fabb5d16d0"
     }
 
-conn.request("GET", "/top/manga/10/manga", headers=headers)
+top_manga = []
 
-res = conn.getresponse()
-data = res.read()
+for i in range(1,30):
+    conn.request("GET", "/top/manga/"+str(i)+"/manga", headers=headers)
 
-print(data.decode("utf-8"))
+    res = conn.getresponse()
+    data = res.read()
+    
+    top_manga.append(data.decode("utf-8"))
+
+#print(data.decode("utf-8"))
+print(top_manga)
+
+# import csv
+# with open('test.csv', 'w', newline='') as file:
+#     mywriter = csv.writer(file, delimiter=',')
+#     mywriter.writerows(top_manga)
