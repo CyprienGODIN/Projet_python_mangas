@@ -5,6 +5,8 @@ Created on Tue Nov 23 16:08:23 2021
 @author: lucil
 """
 
+# Importation des données
+
 import http.client
 conn = http.client.HTTPSConnection("jikan1.p.rapidapi.com")
 
@@ -15,18 +17,20 @@ headers = {
 
 top_manga = []
 
-for i in range(1,30):
-    conn.request("GET", "/top/manga/"+str(i)+"/manga", headers=headers)
+def nbpagerequete(nb):
+    for i in range(1,nb):
+        conn.request("GET", "/top/anime/"+str(i)+"/favorite", headers=headers)
 
-    res = conn.getresponse()
-    data = res.read()
-    
-    top_manga.append(data.decode("utf-8"))
+        res = conn.getresponse()
+        data = res.read()
 
+        top_manga.append(data.decode("utf-8"))
+
+nbpagerequete(10)
 #print(data.decode("utf-8"))
 print(top_manga)
 
-# import csv
-# with open('test.csv', 'w', newline='') as file:
-#     mywriter = csv.writer(file, delimiter=',')
-#     mywriter.writerows(top_manga)
+import csv
+with open('anime.csv', 'w', newline='') as file:
+     mywriter = csv.writer(file)
+     mywriter.writerows(top_manga)
