@@ -1,13 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 23 16:08:23 2021
-
-@author: lucil
-"""
-
-# Importation des données
-
+# Importation des données via la méthode http.client
 import http.client
+import csv
+
 conn = http.client.HTTPSConnection("jikan1.p.rapidapi.com")
 
 headers = {
@@ -27,10 +21,9 @@ def nbpagerequete(nb):
         top_manga.append(data.decode("utf-8"))
 
 nbpagerequete(10)
-#print(data.decode("utf-8"))
 print(top_manga)
 
-import csv
+# Exportation données format csv
 with open('anime.csv', 'w', newline='') as file:
      mywriter = csv.writer(file)
      mywriter.writerows(top_manga)
