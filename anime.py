@@ -19,7 +19,7 @@ class Anime(Representation):
     # Méthodes 
     # Remplace de la classe mère
     def afficheRep(self):
-        print ("Nom du Manga : " + str(self.nom))
+        print ("Nom du Anime : " + str(self.nom))
         print ("Rang : " + str(self.rang))
         print ("Score : " + str(self.score))
         print ("Date de debut : " + str(self.date_debut))
